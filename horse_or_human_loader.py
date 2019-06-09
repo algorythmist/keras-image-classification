@@ -12,7 +12,8 @@ def get_path(filename):
 
 def create_dataset_directory():
     dir = os.path.join(HOME, DATASETS_LOCATION)
-    os.makedirs(dir)
+    if not os.path.exists(dir):
+        os.makedirs(dir)
 
 def download_file(url, filename):
     create_dataset_directory()
