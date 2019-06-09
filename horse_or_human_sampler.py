@@ -1,5 +1,5 @@
 import os
-from horse_or_human_loader import prepare_dataset
+from dataset_loader import prepare_dataset
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 

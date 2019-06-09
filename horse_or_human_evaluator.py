@@ -1,7 +1,7 @@
 import os
 
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from horse_or_human_loader import prepare_dataset
+from dataset_loader import prepare_dataset
 from image_classifier import load_model
 
 if __name__ == '__main__':

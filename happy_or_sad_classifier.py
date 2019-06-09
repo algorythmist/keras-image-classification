@@ -5,7 +5,6 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from dataset_loader import prepare_dataset
 from image_classifier import save_model
 
-
 def build_small_model():
     return tf.keras.models.Sequential([
         # Note the input shape is the desired size of the image 300x300 with 3 bytes color
@@ -33,16 +32,13 @@ def build_small_model():
     ])
 
 if __name__ == '__main__':
-    directory = prepare_dataset('horse-or-human')
+    directory = prepare_dataset('happy-or-sad')
 
     # Directory with our training horse pictures
-    train_horse_dir = os.path.join(directory, 'horses')
+    train_happy_dir = os.path.join(directory, 'happy')
 
     # Directory with our training human pictures
-    train_human_dir = os.path.join(directory, 'humans')
-
-    train_horse_names = os.listdir(train_horse_dir)
-    train_human_names = os.listdir(train_human_dir)
+    train_sad_dir = os.path.join(directory, 'sad')
 
     # build the model
     model = build_small_model()
@@ -53,7 +49,7 @@ if __name__ == '__main__':
                   metrics=['acc'])
 
     # All images will be rescaled by 1./255
-    train_datagen = ImageDataGenerator(rescale=1/255)
+    train_datagen = ImageDataGenerator(rescale=1 / 255)
 
     # Flow training images in batches of 128 using train_datagen generator
     train_generator = train_datagen.flow_from_directory(
@@ -65,8 +61,8 @@ if __name__ == '__main__':
 
     history = model.fit_generator(
         train_generator,
-        steps_per_epoch=8,
-        epochs=15,
+        steps_per_epoch=5,
+        epochs=10,
         verbose=1)
 
-    save_model(model, 'horse_or_human_cnn')
+    save_model(model, 'happy_or_sad_cnn')
