@@ -10,7 +10,12 @@ def get_path(filename):
     return os.path.join(HOME, DATASETS_LOCATION, filename)
 
 
+def create_dataset_directory():
+    dir = os.path.join(HOME, DATASETS_LOCATION)
+    os.makedirs(dir)
+
 def download_file(url, filename):
+    create_dataset_directory()
     local_zip = get_path(filename)
     urllib.request.urlretrieve(url, local_zip)
     return local_zip
