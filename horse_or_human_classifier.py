@@ -33,7 +33,7 @@ def build_small_model():
     ])
 
 if __name__ == '__main__':
-    directory = prepare_dataset()
+    directory = prepare_dataset('horse-or-human')
 
     # Directory with our training horse pictures
     train_horse_dir = os.path.join(directory, 'horses')

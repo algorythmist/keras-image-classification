@@ -68,7 +68,6 @@ if __name__ == '__main__':
     training_images = preprocess(training_images)
     test_images = preprocess(test_images)
 
-
     model = buildSimpleMLP(128, labels)
 
     train_and_save(model, "simplemlp_128_hidden", training_images, training_labels)

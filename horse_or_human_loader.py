@@ -15,6 +15,7 @@ def create_dataset_directory():
     if not os.path.exists(dir):
         os.makedirs(dir)
 
+
 def download_file(url, filename):
     create_dataset_directory()
     local_zip = get_path(filename)
@@ -31,19 +32,19 @@ def unzip(file):
     return dir_name
 
 
-def prepare_dataset():
-    directory = get_path('horse-or-human')
+def prepare_dataset(directory_name):
+    directory = get_path(directory_name)
     if (os.path.exists(directory)):
         print(f'directory {directory} already exists')
         return directory
     zipname = directory+'.zip'
-    if (not os.path.exists(zipname)):
-        print('Downloading zip file...')
-        download_file('https://storage.googleapis.com/laurencemoroney-blog.appspot.com/horse-or-human.zip',
-                      'horse-or-human.zip')
+    if not os.path.exists(zipname):
+        url = f'https://storage.googleapis.com/laurencemoroney-blog.appspot.com/{directory_name}.zip'
+        print('Downloading zip file '+url)
+        download_file(url,zipname)
         print('download completed')
     print('unzipping file...')
-    unzip('horse-or-human.zip')
+    unzip(zipname)
     print('unzip completed')
     return directory
 
